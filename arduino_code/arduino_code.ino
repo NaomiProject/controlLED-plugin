@@ -1,15 +1,12 @@
 int incomingByte = 0;
 int led_green = 2;
 int led_red = 6;
-int temp_sensor = 0;
+
 
 int A = 65;
 int B = 66;
 int C = 67;
 int D = 68;
-int E = 69;
-
-int temp_sensor_value;
 
 void setup() {
   // put your setup code here, to run once:
@@ -39,15 +36,6 @@ void loop() {
       }
       if (incomingByte == D) {
         digitalWrite(led_red, LOW);
-      }
-      if (incomingByte == E) {
-        temp_sensor_value = analogRead(temp_sensor);
-
-        float voltage = (temp_sensor_value/1024.0) * 5.0;
-        float temperature = (voltage - .5) * 100;
-        
-        Serial.print("La température est de ");
-        Serial.println(temperature);
       }
       
   }
