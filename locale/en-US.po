@@ -1,34 +1,42 @@
-# This file is distributed under the same license as the Naomi package.
-#
-#, fuzzy
+# #-#-#-#-#  en-US.po (Naomi 2.2-dev)  #-#-#-#-#
+# Naomi Control-LED translations
 msgid ""
 msgstr ""
-"Project-Id-Version: Controlled Plugin for Naomi\n"
-"Report-Msgid-Bugs-To: https://github.com/NaomiProject/Naomi/issues\n"
-"POT-Creation-Date: 2018-08-11 17:00+0100\n"
-"PO-Revision-Date: 2018-08-11 17:00+0100\n"
-"Last-Translator: Sebastien Rocca <se.rocca84@gmail.com>\n"
+"Project-Id-Version: Naomi 3.0\n"
+"POT-Creation-Date: 2019-11-02 19:31-0400\n"
+"PO-Revision-Date: 2019-11-02 19:31-0400\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 2.2.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: plugins/speechhandler/controlled/Controlled.py:113
+#: controlled.py:52
 msgid "LED"
 msgstr ""
 
-#: plugins/speechhandler/controlled/Controlled.py:113
+#: controlled.py:53 controlled.py:120
 msgid "RED"
 msgstr ""
 
-#: plugins/speechhandler/controlled/Controlled.py:113
+#: controlled.py:54 controlled.py:118
 msgid "GREEN"
 msgstr ""
 
-#: plugins/speechhandler/controlled/Controlled.py:113
+#: controlled.py:55 controlled.py:122
 msgid "ON"
 msgstr ""
 
-#: plugins/speechhandler/controlled/Controlled.py:113
+#: controlled.py:56 controlled.py:124
 msgid "OFF"
+msgstr ""
+
+#: controlled.py:78
+msgid "TURN THE {LEDColorKeyword} {LEDThingKeyword} {LEDOperationKeyword}"
+msgstr ""
+
+#: controlled.py:79
+msgid "TURN {LEDOperationKeyword} THE {LEDColorKeyword} {LEDThingKeyword}"
 msgstr ""
