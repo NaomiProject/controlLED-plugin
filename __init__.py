@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-from .controlled import ControlledPlugin
+from .controlled import ControlLEDPlugin

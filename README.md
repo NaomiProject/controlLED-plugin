@@ -48,6 +48,6 @@ Have fun :wink:
 
 Using digital PIN 2 for the green led and digital pin 6 for the red led
 
-![Image not available for now, please contact support on discord](https://github.com/NaomiProject/controlLED/blob/master/wiring)
+![Image not available for now, please contact support on discord](https://github.com/NaomiProject/controlLED/blob/master/SerialTest.png)
 
 **Need help ? we have a [discord](https://discord.gg/knequ9t) server for support**
