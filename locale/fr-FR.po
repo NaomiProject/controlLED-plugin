@@ -15,7 +15,7 @@ msgstr ""
 
 #: controlled.py:52
 msgid "LED"
-msgstr "DEL"
+msgstr "LED"
 
 #: controlled.py:53 controlled.py:69 controlled.py:120
 msgid "RED"
@@ -35,11 +35,11 @@ msgstr "ETEINT"
 
 #: controlled.py:65
 msgid "ELLEEDEE"
-msgstr "DAYEHHEHLL"
+msgstr "ELLEEDEE"
 
 #: controlled.py:66
 msgid "LIGHT"
-msgstr "LUMIÈRE"
+msgstr "LUMIERE"
 
 #: controlled.py:78
 msgid "TURN THE {LEDColorKeyword} {LEDThingKeyword} {LEDOperationKeyword}"
