@@ -50,4 +50,17 @@ Using digital PIN 2 for the green led and digital pin 6 for the red led
 
 ![Image not available for now, please contact support on discord](https://github.com/NaomiProject/controlLED/blob/master/SerialTest.png)
 
+### Error
+
+* could not open port
+
+Naomi tries both '/dev/ttyACM0' and '/dev/ttyUSB0' to search for your Arduino. If
+your Arduino has been assigned to a different device name in linux (such as
+'/dev/ttyACM1') you can put the device name in profile.yml:
+
+```
+Control LED:
+    device: '/dev/ttyACM1'
+```
+
 **Need help ? we have a [discord](https://discord.gg/knequ9t) server for support**

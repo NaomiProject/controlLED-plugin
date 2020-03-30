@@ -1,10 +1,15 @@
 import serial
 from naomi import plugin
+from naomi import profile
 
 
 warning_msg = ""
 
 
+# SimulateSerial provides a test object that we can use for
+# testing when we don't have the complete circuit built.
+# It just echos to the screen the strings it would have sent
+# to the device.
 class SimulatedSerial(object):
     @staticmethod
     def write(binary):
@@ -36,7 +41,7 @@ class ControlLEDPlugin(plugin.SpeechHandlerPlugin):
             # This should probably be a property that the user can set in
             # the profile.yml
             self._SER = serial.Serial(
-                port='/dev/ttyACM0',
+                port=profile.get(['Control LED', 'device'], '/dev/ttyACM0'),
                 baudrate=9600,
                 timeout=0
             )
@@ -48,9 +53,7 @@ class ControlLEDPlugin(plugin.SpeechHandlerPlugin):
                     baudrate=9600,
                     timeout=0
                 )
-                print("Reading: {}".format(self._SER.read_until()))
             except Exception as e:
-                warning_msg = e.args[1]
                 self._SER = SimulatedSerial()
         if not self._SER:
             raise serial.serialutil.SerialException(warning_msg)
