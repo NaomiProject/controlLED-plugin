@@ -1,5 +1,21 @@
 import serial
 from naomi import plugin
+from naomi import profile
+
+
+warning_msg = ""
+
+
+# SimulateSerial provides a test object that we can use for
+# testing when we don't have the complete circuit built.
+# It just echos to the screen the strings it would have sent
+# to the device.
+class SimulatedSerial(object):
+    @staticmethod
+    def write(binary):
+        print("Simulation mode: {}".format(warning_msg))
+        print("I would have sent: {}".format(binary))
+
 
 class ControlLEDPlugin(plugin.SpeechHandlerPlugin):
     LED = [0, 0]
@@ -13,6 +29,7 @@ class ControlLEDPlugin(plugin.SpeechHandlerPlugin):
     # because it never seems to work right directly after opening.
     # If I give it a second, it seems to work better.
     def __init__(self, *args, **kwargs):
+        global warning_msg
         super(ControlLEDPlugin, self).__init__(*args, **kwargs)
         try:
             # Buster seems to see an arduino as an ACM device, not
@@ -24,7 +41,7 @@ class ControlLEDPlugin(plugin.SpeechHandlerPlugin):
             # This should probably be a property that the user can set in
             # the profile.yml
             self._SER = serial.Serial(
-                port='/dev/ttyACM0',
+                port=profile.get(['Control LED', 'device'], '/dev/ttyACM0'),
                 baudrate=9600,
                 timeout=0
             )
@@ -36,9 +53,8 @@ class ControlLEDPlugin(plugin.SpeechHandlerPlugin):
                     baudrate=9600,
                     timeout=0
                 )
-                print("Reading: {}".format(self._SER.read_until()))
             except Exception as e:
-                warning_msg = e.args[1]
+                self._SER = SimulatedSerial()
         if not self._SER:
             raise serial.serialutil.SerialException(warning_msg)
 
@@ -57,27 +73,49 @@ class ControlLEDPlugin(plugin.SpeechHandlerPlugin):
         ]
     
     def intents(self):
-        _ = self.gettext
         return {
             'LEDIntent': {
-                'keywords': {
-                    'LEDThingKeyword': [
-                        _('ELLEEDEE'),
-                        _('LIGHT')
-                    ],
-                    'LEDColorKeyword': [
-                        _('RED'),
-                        _('GREEN')
-                    ],
-                    'LEDOperationKeyword': [
-                        _('ON'),
-                        _('OFF')
-                    ]
+                'locale': {
+                    'en-US': {
+                        'keywords': {
+                            'LEDThingKeyword': [
+                                'ELLEEDEE',
+                                'LIGHT'
+                            ],
+                            'LEDColorKeyword': [
+                                'RED',
+                                'GREEN'
+                            ],
+                            'LEDOperationKeyword': [
+                                'ON',
+                                'OFF'
+                            ]
+                        },
+                        'templates': [
+                            "TURN THE {LEDColorKeyword} {LEDThingKeyword} {LEDOperationKeyword}",
+                            "TURN {LEDOperationKeyword} THE {LEDColorKeyword} {LEDThingKeyword}"
+                        ]
+                    },
+                    'fr-FR': {
+                        'keywords': {
+                            'LEDThingKeyword': [
+                                'ELLEEDEE',
+                                'LUMIERE'
+                            ],
+                            'LEDColorKeyword': [
+                                'ROUGE',
+                                'VERTE'
+                            ],
+                            'LEDOperationKeyword': [
+                                'ALLUME',
+                                'ETEINT'
+                            ]
+                        },
+                        'templates': [
+                            "{LEDOperationKeyword} LA {LEDThingKeyword} {LEDColorKeyword}"
+                        ]
+                    }
                 },
-                'templates': [
-                    _("TURN THE {LEDColorKeyword} {LEDThingKeyword} {LEDOperationKeyword}"),
-                    _("TURN {LEDOperationKeyword} THE {LEDColorKeyword} {LEDThingKeyword}")
-                ],
                 'action': self.handle
             }
         }
@@ -104,7 +142,7 @@ class ControlLEDPlugin(plugin.SpeechHandlerPlugin):
             # Naomi 3.0+
             text = intent['input']
             try:
-                COLORS= intent['matches']['LEDColorKeyword']
+                COLORS = intent['matches']['LEDColorKeyword']
             except KeyError:
                 COLORS = None
             try:
