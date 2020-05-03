@@ -1,6 +1,6 @@
 [Plugin]
 Name = Control LED
-Version = 1.0.1
+Version = 1.0.2
 License = MIT
 URL = https://github.com/NaomiProject/Naomi/controlLED-plugin.git
 Description = Control leds with Naomi
