@@ -37,21 +37,16 @@ With this really simple plugin you can basically control 2 leds using your voice
 
 To install this plugin in Naomi **using terminal**: 
 
-**1.** Open a terminal window and go in the speechandler plugin folder:
+**1.** Open a terminal window and run Naomi with the "--install" flag:
 
-`cd your_naomi_installation_directory/plugins/speechhandler`
+```
+$ cd your_naomi_installation_directory
+$ ./Naomi --install "Control LED"
+```
 
-**2.** and then clone the plugin from GitHub to your `speechhandler` folder
+**2.** Upload the arduino code available in `/controlLED/arduino_code` in the board
 
-`git clone https://github.com/NaomiProject/controlLED.git`
-
-**3.** compile the translations if you need to:
-
-`~/Naomi-1/./compile_translations.sh`
-
-**4.** Upload the arduino code available in `/controlLED/arduino_code` in the board
-
-**5.** and then launch Naomi ! H
+**3.** and then launch Naomi ! H
 
 Have fun :wink:
 
